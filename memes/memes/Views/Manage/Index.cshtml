@@ -1,0 +1,52 @@
+﻿@model memes.Models.IndexViewModel
+@{
+    ViewBag.Title = "Account";
+}
+
+
+    <div class="container" style="margin-top:40px">
+        <h2 class="display-4" style="font-size:32px">@ViewBag.Title: @User.Identity.Name</h2>
+
+        <p class="text-success">@ViewBag.StatusMessage</p>
+        <div>
+            <h4 class="display-4" style="font-size:28px">Profile information</h4>   
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>Password:</dt>
+                <dd>
+                    [
+                    @if (Model.HasPassword)
+                    {
+                        @Html.ActionLink("Change your password", "ChangePassword")
+                    }
+                    else
+                    {
+                        @Html.ActionLink("Create", "SetPassword")
+                    }
+                    ]
+                </dd>
+                <dt>Address:</dt>
+                <dd>
+
+                </dd>
+                <dt>Purchase history:</dt>
+                <dd>
+
+                </dd>
+                @*<dt>External Logins:</dt>
+                <dd>
+                    @Model.Logins.Count [
+                    @Html.ActionLink("Manage", "ManageLogins") ]
+                </dd>*@
+                <dd>
+                    @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <a href="javascript:document.getElementById('logoutForm').submit()">Log off</a>
+                    }
+                </dd>
+                
+            </dl>
+        </div>
+
+    </div>

@@ -1,0 +1,58 @@
+﻿<!-- Navigation -->
+
+<style>
+    .carousel-item {
+        height: 100vh;
+        min-height: 350px;
+        background: no-repeat center center scroll;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+    }
+</style>
+
+
+
+<header>
+    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+        </ol>
+        <div class="carousel-inner" role="listbox">
+            <!-- Slide One - Set the background image for this slide in the line below -->
+            <div class="carousel-item active" style="background-image: url('https://miro.medium.com/max/3840/1*F5QTh7A3gmrHv9_wCc8vWw.jpeg')">
+                <div class="carousel-caption d-none d-md-block">
+                    <h2 class="display-4" style="color:black">This is Memes</h2>
+                    <p class="lead" style="color:black">Every clothes you want is here, just check it out.</p>
+                </div>
+            </div>
+            <!-- Slide Two - Set the background image for this slide in the line below -->
+            <div class="carousel-item" style="background-image: url('https://mi9retail-rm9gupg15kxbkvpc.stackpathdns.com/wp-content/uploads/2017/08/Dept-Store-t-shirts-on-rack-with-room-for-text-picjumbo-com-1920x1080-cropped.jpg')">
+                <div class="carousel-caption d-none d-md-block">
+                    <h2 class="display-4" style="color:black"><a class="display-4" href="@Url.Action("Index", "Men")" style="color:black" >Men</a> or <a class="display-4"
+                                                                                                                                                         href="@Url.Action("Index", "Women")" style="color:black" >Women</a> </h2>
+                    <p class="lead" style="color:black">Choose your side.</p>
+                </div>
+            </div>
+           
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+</header>
+
+<!-- Page Content -->
+<section class="py-5">
+    <div class="container">
+        <h1 class="display-4">What About Memes?</h1>
+        <p class="lead">This is the place where everyone can find a spot. Search for clothes, check the latest trands, buy clothes and stay tuned!</p>
+    </div>
+</section>

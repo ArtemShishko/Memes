@@ -1,0 +1,59 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <link rel="stylesheet" href="~/Content/navbars.css" />
+    <link rel="stylesheet" type="text/css" href="~/Content/signin.css">
+
+</head>
+
+<body>
+     
+    <nav class="navbar navbar-expand-sm navbar-light fixed-top bg-light first-nav">
+        <div class="container-fluid">
+            <div class="navbar-brand">
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                @Html.ActionLink("MEMES.", "Index", "Home", new { area = "" }, new { @class = "navbar-brand display-4", style = "font-size:22px; font-weight:350" })
+            </div>
+            <div class="navbar-collapse collapse" id="navbarSupportedContent">
+                <ul class="nav navbar-nav mr-auto">
+                    <li>@Html.ActionLink("MEN", "Index", "Men", null, new { @class = "nav-link display-4", style = "font-size:18px; font-weight:350" })</li>
+                    <li>@Html.ActionLink("WOMEN", "Index", "Women", null, new { @class = "nav-link display-4", style = "font-size:18px; font-weight:350" })</li>
+                </ul>
+                <ul class="nav navbar-nav mr-auto" style="width: 900px">
+                    <li style="width:900px">
+                        @using (Html.BeginForm("Index", "Search", FormMethod.Get))
+                        {
+                        <div class="input-group mb-0">
+                            <input class="form-control form-control" name="search" type="text" placeholder="Search..." style="min-width: 700px">
+                            <div class="input-group-append">
+                                <button class="btn btn-dark" type="submit">Go</button>
+                            </div>
+
+                            @*@Html.TextBox("search", null, new { style = "width:700px" })<input type="submit" value="Search.." />*@
+                        </div>
+                        }
+                    </li>
+                </ul>
+                
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </nav>
+    @RenderBody()
+    
+    @*<hr />
+    <footer>
+        <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+    </footer>*@
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

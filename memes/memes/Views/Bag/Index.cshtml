@@ -1,0 +1,82 @@
+﻿@using memes.Models
+@model IEnumerable<BagViewModel>
+@{
+    ViewBag.Title = "ShoppingCart";
+    decimal totalAmount = 0.00M;
+
+}
+
+<h3 class="display-4" style="margin-top:40px; text-align:center; font-size:42px">Bag</h3>
+@if (Model == null)
+{
+    <h2 class="display-4 text-center" style="margin-top:50px">Bag is empty</h2>
+    <a class="display-4" style="font-size:32px; margin-left:630px"  href="@Url.Action("Index","Home")">Go back to shopping</a>
+}
+else
+{
+    using (Html.BeginForm("AddOrder", "Bag", FormMethod.Post))
+    {
+        <div class="container" style="margin-top:40px">
+            <table class="table" style="width: 100%">
+                <thead>
+                    <tr>
+                        <th class="display-4" style="font-size:24px; font-weight:400">Image</th>
+                        <th class="display-4" style="font-size:24px; font-weight:400">Clothes name</th>
+                        <th class="display-4" style="font-size:24px; font-weight:400">Size</th>
+                        <th class="display-4" style="font-size:24px; font-weight:400">Quantity</th>
+                        <th class="display-4" style="font-size:24px; font-weight:400">Price</th>
+                        <th class="display-4" style="font-size:24px; font-weight:400">Total</th>
+                    </tr>
+                </thead>
+                @foreach (var item in Model)
+                {
+                    totalAmount += item.Total;
+                    <tr>
+
+                        <td>
+                            <img src="@Url.Action("RenderPhoto", "Men", new { photoId = item.Id })" height="50" width="50" class="img-fluid" />
+                        </td>
+                        <td class="display-4" style="font-size:24px">
+                            @item.ItemName
+                        </td>
+                        <td class="display-4" style="font-size:22px">
+                            @item.Size
+                        </td>
+
+                        <td class="display-4" style="text-align:center; font-size:22px">
+                            @item.Quantity.ToString("#,##0")
+                        </td>
+                        <td class="display-4" style="text-align: start; font-size:22px">
+                            @item.UnitPrice.ToString("#,##0.00")USD
+                        </td>
+                        <td class="display-4" style="text-align: start; font-size:22px">
+                            @item.Total.ToString("#,##0.00")USD
+                        </td>
+                    </tr>
+                }
+                <tr style="border-top: 1px">
+                    <td colspan="5" style="text-align: right">
+                        <h3 class="display-4" style="font-size:32px">Total Amount</h3>
+                    </td>
+                    <td style="text-align: right">
+                        <h3 class="display-4" style="font-size:32px">@totalAmount.ToString("#,##0.00")USD</h3>
+                    </td>
+                </tr>
+
+                <tr style="text-align: right">
+                    <td colspan="6">
+                        @Html.ActionLink("File", "CreateFile", "Bag", new { @class = "btn btn-dark display-4", style = "width:300px; height:50px; " })
+                        <input type="submit" value="Make an order" onclick="@Url.Action("CreateFile","Bag")" name="Save" class="btn btn-dark display-4" style="width:300px; height:50px" id="SaveOrder" />
+
+                    </td>
+                    @*<td colspan="6">
+                          @Html.ActionLink("File", "CreateFile", "Bag", new { @class = "btn btn-dark display-4", style = "width:300px; height:50px" })
+                    </td>*@
+                </tr>
+            </table>
+        </div>
+    }
+}
+
+
+

@@ -1,0 +1,81 @@
+﻿@using Microsoft.AspNet.Identity
+@if (Request.IsAuthenticated)
+{
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    {
+    @Html.AntiForgeryToken()
+
+    <ul class="nav navbar-nav navbar-right mr-auto">
+        @*<li class="nav-item">
+            @Html.ActionLink(User.Identity.GetUserName(), "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage", @class = "nav-link" })
+            <a class="nav-link" href="@Url.Action("Index", "Manage")">
+                <svg class="bi bi-person-circle" width="1.4em" height="1.4em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M13.468 12.37C12.758 11.226 11.195 10 8 10s-4.757 1.225-5.468 2.37A6.987 6.987 0 0 0 8 15a6.987 6.987 0 0 0 5.468-2.63z" />
+                    <path fill-rule="evenodd" d="M8 9a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
+                    <path fill-rule="evenodd" d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zM0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8z" />
+                </svg>
+            </a>
+        </li>*@
+        <li class="nav-item">
+            @if (User.Identity.Name == "admin@admin.com")
+            {
+                <a class="nav-link" href="@Url.Action("AdminList", "Manage")">
+                    <svg class="bi bi-person-circle" width="1.4em" height="1.4em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M13.468 12.37C12.758 11.226 11.195 10 8 10s-4.757 1.225-5.468 2.37A6.987 6.987 0 0 0 8 15a6.987 6.987 0 0 0 5.468-2.63z" />
+                        <path fill-rule="evenodd" d="M8 9a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
+                        <path fill-rule="evenodd" d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zM0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8z" />
+                    </svg>
+                </a>
+            }
+            else
+            {
+
+               
+        <a href="javascript:document.getElementById('logoutForm').submit()" class="nav-link">
+            <svg class="bi bi-person-circle" width="1.4em" height="1.4em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path d="M13.468 12.37C12.758 11.226 11.195 10 8 10s-4.757 1.225-5.468 2.37A6.987 6.987 0 0 0 8 15a6.987 6.987 0 0 0 5.468-2.63z" />
+                <path fill-rule="evenodd" d="M8 9a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
+                <path fill-rule="evenodd" d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zM0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8z" />
+            </svg>
+        </a>
+                    }
+               @* <a class="nav-link" href="@Url.Action("LogOff", "Account")">
+                    
+                </a>*@
+            
+            
+        </li>
+        <li>
+            <a href="@Url.Action("Index", "Bag")" class="nav-link" style="margin-bottom:-13px">
+                <div class="post-info">
+                    <span class="charity">
+                        <span style="font-size: 11px;position:absolute;text-align:center;width:30px;padding-top:5px; font-weight:600">
+                            @if ((Session["CartCounter"] == null))
+                            {
+                                @Html.Label(" ", new { id = "cartItem", style = "margin-top: 1px; margin-right: 3px" })
+                            }
+                            else
+                            {
+                                @Html.Label(Session["CartCounter"].ToString(), new { id = "cartItem", style = "margin-top: 1px; margin-right: 3px" })
+                            }
+                        </span>
+
+                        <svg class="bi bi-bag form-control-feedback" style="margin-bottom:4px" width="27" height="22" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" text-anchor="middle" d="M14 5H2v9a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V5zM1 4v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4H1z"></path>
+                            <path d="M8 1.5A2.5 2.5 0 0 0 5.5 4h-1a3.5 3.5 0 1 1 7 0h-1A2.5 2.5 0 0 0 8 1.5z"></path>
+                        </svg>
+                    </span>
+                </div>
+                
+            </a>
+        </li>
+        @*<li class="nav-item"><a class="nav-link" href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>*@
+    </ul>
+    }
+}
+else
+{
+    <ul class="nav navbar-nav navbar-right">
+        <li >@Html.ActionLink("SIGN IN", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink", @class = "nav-link" })</li>
+    </ul>
+}

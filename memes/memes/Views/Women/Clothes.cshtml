@@ -1,0 +1,75 @@
+﻿@using memes.Models
+@model IEnumerable<ShoppingViewModel>
+@{
+    string category = "";
+}
+<style>
+    .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
+
+    .media (min-width: 768px) {
+        .bd-placeholder-img-lg
+
+    {
+        font-size: 3.5rem;
+    }
+    }
+</style><!-- Custom styles for this template -->
+<nav class="navbar navbar-expand-sm navbar-dark bg-light sticky-top second-nav">
+    <div class="nav-scroller py-1 mb-2">
+        <nav class="nav d-flex justify-content-between">
+            <a class="p-0 text-muted">
+                @Html.ActionLink("Jeans", "Jeans", "Women", null, new { @class = "p2 text-muted nav-link display-4", style = "font-size:18px; font-weight:350" })
+            </a>
+            <a class="p-0 text-muted">
+                @Html.ActionLink("Skirts", "Skirts", "Women", null, new { @class = "p2 text-muted nav-link display-4", style = "font-size:18px; font-weight:350" })
+            </a>
+            <a class="p-0 text-muted">
+                @Html.ActionLink("Dresses", "Dresses", "Women", null, new { @class = "text-muted nav-link display-4", style = "font-size:18px; font-weight:350" })
+            </a>
+            <a class="p-0 text-muted">
+                @Html.ActionLink("Blouses", "Blouses", "Women", null, new { @class = "text-muted nav-link display-4", style = "font-size:18px; font-weight:350" })
+            </a>
+        </nav>
+    </div>
+</nav>
+
+<div class="container" style="margin-top: 30px">
+    @foreach (var item in Model)
+    {
+        category = item.Category;
+    }
+    <h2 class="text-center display-4" style="font-size:42px">@category.ToString()</h2>
+    <div class="card-deck">
+
+
+        @foreach (var item in Model)
+        {
+
+            <div class="row">
+                <div class="card" style="width:329px; height:585px; margin: 40px 40px 10px 40px">
+                    <img class="card-img" src="@Url.Action("RenderPhoto", "Men", new { photoId = item.Id })" height="400" alt="Card image" />
+
+                    <div class="card-body">
+                        <h4 class="card-title display-4" style="font-size:22px; font-weight:350">@item.Name</h4>
+                        <p class="card-text display-4 text-muted" style="font-size:18px; font-weight:350">@item.Details</p>
+                        @Html.ActionLink("Details", "Details", "Women", new { id = item.Id }, new
+                   {
+                       @class = "btn btn-dark stretched-link display-4",
+                       style = "font - size:22px; font - weight:350"
+                   })
+                        <b style="margin-left:110px; font-size:18px; font-weight:350" class="display-4">@item.Price USD</b>
+                        @*<input type="button" name="AddToCart" value="Add to cart" class="btn btn-primary" itemid="@item.Id" id="btnAddToCart" onclick="AddToCart(this)" />*@
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
